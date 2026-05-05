@@ -15,24 +15,13 @@ import {
 import { motion } from 'motion/react';
 import React, { useState } from 'react';
 
-// Simple Swoosh SVG
-const Swoosh = ({ className = 'w-16 h-auto' }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 250 88"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M59.4 87.7c-17.6 0-33.1-4.8-44-13.6-7.5-6-12-13.5-13.8-22.9-.6-3.3-.8-7.3-.6-11.5.3-7.5 2.5-14.7 6.4-21.4 3.7-6.2 8.4-11.5 14.2-15.6 2.4-1.7 6.1-3.6 8.7-4.4 1.2-.4 1.4-.4 1.5-.1.3.6 2.5 4.5 3.1 5.5l1.1 1.9-2.3 2C24 16.5 14.5 29.5 14 43.1c-.2 4.1.8 8.8 2.7 12.2 4.1 7.2 12 11.5 23.4 12.7 5.2.6 12 .3 18.3-.7 13.9-2.3 28.5-7.7 41.5-15.2C128.5 35.6 156.4 19.3 181.7 8c25.4-11.3 50.1-13.8 63-6.5l3.8 2.2-4.1 2.3c-14.4 8-36.4 25.5-56.1 44.5C163 75.3 140 92.5 119.5 99.4c-9.1 3-23.7 3.3-33-.1l-1.3-.5 1-1.2c5-5.9 14.8-15.1 22.8-21.5l3.7-3-3.6 2c-15.9 8.9-36.4 14.9-50 14.9-1.3 0-2.3 0-2.3-.1zL61 88c-.6 0-1.3-.1-1.6-.3z" />
-  </svg>
-);
 
 const Navbar = () => {
   return (
     <div className="w-full bg-white z-50 sticky top-0 border-b border-gray-100">
       <div className="flex justify-between items-center px-8 lg:px-16 py-6">
         <div className="flex-1">
-          <Swoosh className="w-16" />
+          <img src="/1.png" alt="Logo" className="w-12 h-auto" />
         </div>
         <div className="font-medium text-base hover:text-gray-600 cursor-pointer">
           Registrarse
@@ -159,9 +148,9 @@ const MoreBenefits = () => {
     <section className="py-24 md:py-32 border-t border-neutral-100">
       <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
         {benefits.map((b, i) => (
-          <div key={i} className="group flex flex-col min-h-[320px]">
-            <div className="w-16 h-16 bg-black flex items-center justify-center text-white font-black text-base mb-16 shadow-lg">{b.icon}</div>
-            <div className="mt-auto">
+          <div key={i} className="group flex flex-col">
+            <div className="w-16 h-16 bg-black flex items-center justify-center text-white font-black text-base mb-6 shadow-lg">{b.icon}</div>
+            <div className="">
               <h3 className="font-black uppercase text-base mb-4 tracking-widest">{b.title}</h3>
               <p className="text-sm text-neutral-500 leading-relaxed font-medium">
                 {b.desc}
@@ -195,10 +184,10 @@ const Marquee = () => {
 
 const AppsSection = () => {
   const apps = [
-    { name: "Nike App", desc: "Mantente al día con lo mejor.", bg: "bg-neutral-50", text: "text-black" },
-    { name: "Nike Run Club", desc: "Corre con nosotros en NRC.", bg: "bg-black", text: "text-white" },
-    { name: "Nike Training", desc: "Muévete con NTC.", bg: "bg-neutral-100", text: "text-black" },
-    { name: "SNKRS", desc: "Los lanzamientos más recientes.", bg: "bg-neutral-900", text: "text-white" }
+    { name: "Nike App", desc: "Mantente al día con lo mejor.", bg: "bg-neutral-50", text: "text-black", icon: "/5.png" },
+    { name: "Nike Run Club", desc: "Corre con nosotros en NRC.", bg: "bg-black", text: "text-white", icon: "/2.png" },
+    { name: "Nike Training", desc: "Muévete con NTC.", bg: "bg-neutral-100", text: "text-black", icon: "/3.png" },
+    { name: "SNKRS", desc: "Los lanzamientos más recientes.", bg: "bg-neutral-900", text: "text-white", icon: "/4.png" }
   ];
 
   return (
@@ -208,9 +197,9 @@ const AppsSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
           {apps.map((app, i) => (
             <div key={i} className={`flex flex-col items-start p-10 lg:p-16 ${app.bg} ${app.text} min-h-[400px] group cursor-pointer`}>
-               <span className="font-display text-5xl lg:text-6xl tracking-tighter mb-8 italic font-black uppercase group-hover:-translate-y-2 transition-transform origin-left">
-                  {app.name === "SNKRS" ? "SNKRS" : app.name === "Nike Run Club" ? "NRC" : app.name === "Nike Training" ? "NTC" : "NIKE"}
-               </span>
+               <div className="w-20 h-20 mb-8 group-hover:-translate-y-2 transition-transform origin-left">
+                  <img src={app.icon} alt={app.name} className={`w-full h-full object-contain ${app.text === 'text-white' ? 'invert' : ''}`} />
+               </div>
               <h3 className="text-sm font-black uppercase tracking-widest mb-4 mt-auto">{app.name}</h3>
               <p className={`text-sm opacity-70 mb-12 leading-relaxed max-w-[200px] font-medium`}>{app.desc}</p>
               <div className={`text-xs font-bold uppercase tracking-[0.2em] border-b-2 ${app.text === 'text-white' ? 'border-white' : 'border-black'} pb-2 group-hover:opacity-50 transition-opacity`}>
@@ -225,11 +214,25 @@ const AppsSection = () => {
 };
 
 const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   const faqs = [
-    "¿Qué es la membresía de Nike?",
-    "¿Soy Miembro de Nike?",
-    "¿Tiene algún costo?",
-    "¿Cuáles son los beneficios?"
+    {
+      q: "¿Qué es la membresía de Nike?",
+      a: "La membresía de Nike es una comunidad que te ofrece acceso exclusivo a lo mejor de Nike: productos, experiencias y una comunidad dedicada al deporte."
+    },
+    {
+      q: "¿Soy Miembro de Nike?",
+      a: "Si alguna vez te has registrado en una App de Nike (como Nike App, NRC o NTC), ya eres Miembro. ¡Solo inicia sesión!"
+    },
+    {
+      q: "¿Tiene algún costo?",
+      a: "No, unirse a la membresía de Nike es completamente gratis. Solo necesitas registrarte para empezar a disfrutar de los beneficios."
+    },
+    {
+      q: "¿Cuáles son los beneficios?",
+      a: "Incluye envío gratuito en pedidos seleccionados, acceso a lanzamientos exclusivos, entrenamientos guiados en nuestras apps y eventos especiales para la comunidad."
+    }
   ];
 
   return (
@@ -240,12 +243,23 @@ const FAQ = () => {
           <p className="text-base text-neutral-500 font-medium max-w-sm">Todo lo que necesitas saber acerca de nuestra comunidad y beneficios.</p>
         </div>
         <div className="lg:col-span-2 flex flex-col divide-y divide-neutral-200">
-          {faqs.map((q, i) => (
-            <div key={i} className="py-10 flex justify-between items-center cursor-pointer group">
-              <h3 className="text-lg font-medium group-hover:text-neutral-500 transition-colors">{q}</h3>
-              <div className="w-10 h-10 flex items-center justify-center bg-white text-black group-hover:bg-black group-hover:text-white transition-colors rounded-full border border-neutral-200">
-                <ChevronDown className="w-5 h-5" />
+          {faqs.map((faq, i) => (
+            <div key={i} className="py-8 flex flex-col cursor-pointer group" onClick={() => setOpenIndex(openIndex === i ? null : i)}>
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg font-medium group-hover:text-neutral-500 transition-colors">{faq.q}</h3>
+                <div className={`w-10 h-10 flex items-center justify-center transition-all rounded-full border border-neutral-200 ${openIndex === i ? 'bg-black text-white rotate-180' : 'bg-white text-black'}`}>
+                  <ChevronDown className="w-5 h-5" />
+                </div>
               </div>
+              <motion.div
+                initial={false}
+                animate={{ height: openIndex === i ? "auto" : 0, opacity: openIndex === i ? 1 : 0 }}
+                className="overflow-hidden"
+              >
+                <p className="pt-6 text-neutral-500 leading-relaxed max-w-2xl font-medium">
+                  {faq.a}
+                </p>
+              </motion.div>
             </div>
           ))}
         </div>
@@ -258,7 +272,7 @@ const Footer = () => {
   return (
     <footer className="py-16 md:py-24 px-8 lg:px-16 border-t border-neutral-200 flex flex-col md:flex-row justify-between items-center text-xs uppercase tracking-widest text-neutral-400 font-bold bg-white gap-12">
       <div className="flex items-center gap-6">
-        <Swoosh className="w-16 text-neutral-400" />
+        <img src="/1.png" alt="Logo" className="w-12 h-auto opacity-50 grayscale" />
         <span>© 2026 Nike, Inc.</span>
       </div>
       <div className="flex gap-8 lg:gap-12 flex-wrap justify-center">
