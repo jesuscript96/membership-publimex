@@ -11,6 +11,11 @@ import {
   ChevronRight,
   Globe,
   User,
+  Smartphone,
+  Activity,
+  Dumbbell,
+  Package,
+  LucideIcon,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import React, { useState } from 'react';
@@ -21,7 +26,7 @@ const Navbar = () => {
     <div className="w-full bg-white z-50 sticky top-0 border-b border-gray-100">
       <div className="flex justify-between items-center px-8 lg:px-16 py-6">
         <div className="flex-1">
-          <img src="/1.png" alt="Logo" className="w-12 h-auto" />
+          <img src="/nike-logo.svg" alt="Logo" className="w-14 h-auto" />
         </div>
         <div className="font-medium text-base hover:text-gray-600 cursor-pointer">
           Registrarse
@@ -183,11 +188,11 @@ const Marquee = () => {
 };
 
 const AppsSection = () => {
-  const apps = [
-    { name: "Nike App", desc: "Mantente al día con lo mejor.", bg: "bg-neutral-50", text: "text-black", icon: "/5.png" },
-    { name: "Nike Run Club", desc: "Corre con nosotros en NRC.", bg: "bg-black", text: "text-white", icon: "/2.png" },
-    { name: "Nike Training", desc: "Muévete con NTC.", bg: "bg-neutral-100", text: "text-black", icon: "/3.png" },
-    { name: "SNKRS", desc: "Los lanzamientos más recientes.", bg: "bg-neutral-900", text: "text-white", icon: "/4.png" }
+  const apps: { name: string; desc: string; bg: string; text: string; icon: LucideIcon }[] = [
+    { name: "Nike App", desc: "Mantente al día con lo mejor.", bg: "bg-neutral-50", text: "text-black", icon: Smartphone },
+    { name: "Nike Run Club", desc: "Corre con nosotros en NRC.", bg: "bg-black", text: "text-white", icon: Activity },
+    { name: "Nike Training", desc: "Muévete con NTC.", bg: "bg-neutral-100", text: "text-black", icon: Dumbbell },
+    { name: "SNKRS", desc: "Los lanzamientos más recientes.", bg: "bg-neutral-900", text: "text-white", icon: Package }
   ];
 
   return (
@@ -195,18 +200,21 @@ const AppsSection = () => {
       <div className="max-w-7xl mx-auto w-full px-4 md:px-8 py-24 md:py-32">
         <h2 className="text-3xl md:text-4xl font-medium text-gray-900 mb-16 px-4">Conecta con tus Apps</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
-          {apps.map((app, i) => (
-            <div key={i} className={`flex flex-col items-start p-10 lg:p-16 ${app.bg} ${app.text} min-h-[400px] group cursor-pointer`}>
-               <div className="w-20 h-20 mb-8 group-hover:-translate-y-2 transition-transform origin-left">
-                  <img src={app.icon} alt={app.name} className={`w-full h-full object-contain ${app.text === 'text-white' ? 'invert' : ''}`} />
-               </div>
-              <h3 className="text-sm font-black uppercase tracking-widest mb-4 mt-auto">{app.name}</h3>
-              <p className={`text-sm opacity-70 mb-12 leading-relaxed max-w-[200px] font-medium`}>{app.desc}</p>
-              <div className={`text-xs font-bold uppercase tracking-[0.2em] border-b-2 ${app.text === 'text-white' ? 'border-white' : 'border-black'} pb-2 group-hover:opacity-50 transition-opacity`}>
-                Explorar
+          {apps.map((app, i) => {
+            const Icon = app.icon;
+            return (
+              <div key={i} className={`flex flex-col items-start p-10 lg:p-16 ${app.bg} ${app.text} min-h-[400px] group cursor-pointer`}>
+                <div className="mb-8 group-hover:-translate-y-2 transition-transform origin-left">
+                  <Icon className="w-16 h-16" strokeWidth={1.25} />
+                </div>
+                <h3 className="text-sm font-black uppercase tracking-widest mb-4 mt-auto">{app.name}</h3>
+                <p className="text-sm opacity-70 mb-12 leading-relaxed max-w-[200px] font-medium">{app.desc}</p>
+                <div className={`text-xs font-bold uppercase tracking-[0.2em] border-b-2 ${app.text === 'text-white' ? 'border-white' : 'border-black'} pb-2 group-hover:opacity-50 transition-opacity`}>
+                  Explorar
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
@@ -272,7 +280,7 @@ const Footer = () => {
   return (
     <footer className="py-16 md:py-24 px-8 lg:px-16 border-t border-neutral-200 flex flex-col md:flex-row justify-between items-center text-xs uppercase tracking-widest text-neutral-400 font-bold bg-white gap-12">
       <div className="flex items-center gap-6">
-        <img src="/1.png" alt="Logo" className="w-12 h-auto opacity-50 grayscale" />
+        <img src="/nike-logo.svg" alt="Logo" className="w-14 h-auto opacity-30 grayscale" />
         <span>© 2026 Nike, Inc.</span>
       </div>
       <div className="flex gap-8 lg:gap-12 flex-wrap justify-center">
